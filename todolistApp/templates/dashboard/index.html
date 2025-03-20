@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block titulo %} Dashboard {% endblock %}
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">
+        <h1>Dashboard</h1>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Tickets <i class="fa-solid fa-ticket"></i></h4>
+
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>Titulo</th>
+                    <th>Fecha de creacion</th>
+                    <th>Descripcion</th>
+                    <th>Status</th>
+                    <th>Usuario</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% if tickets %}
+                {% for ticket in tickets %}
+
+                <tr>
+                    <td><i class="fa-solid fa-ticket-simple"></i> {{ ticket.title }}</td>
+                    <td><i class="fa-solid fa-calendar"></i> {{ ticket.start.year }}/{{ ticket.start.month }}/{{ ticket.start.day }}</td>
+                    <td><i class="fa-solid fa-comment"></i> {{ ticket.description }}</td>
+                    <td><i class="fa-solid fa-question"></i> {{ ticket.status }}</td>
+                    <td><i class="fa-solid fa-user"></i> {{ ticket.usuario }}</td>
+                    {% if ticket.status == "Pendiente" %}
+                    <td><a href="{% url 'procesar_ticket' ticket.id %}" class="btn btn-info" role="button">Procesar</a></td>
+                    {% endif %}
+                    {% if ticket.status == "Procesando" %}
+                    <td class="text-center"><i class="fa-solid fa-clock"></i></td>
+                    {% endif %}
+                </tr>
+
+                {% endfor %}
+                {% else %}
+                <p class='errors'>No tienes tareas pendientes.</p>
+                {% endif %}
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block titulo %} Crear Ticket {% endblock %}
+{% block contenido %}
+
+<div class="card">
+  <div class="card-header">
+    Crear Ticket
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">Informacion del ticket</h4>
+
+    {% include 'tareasPorHacer/form.html' %}
+  </div>
+</div>
+
+
+{% endblock %}

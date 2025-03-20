@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block titulo %} Mis tickets {% endblock %}
+{% block contenido %}
+
+<div class="card">
+  <div class="card-header">
+    <a href="{% url 'crearTarea' %}" role="bu
+    " class="btn btn-success">Crear Ticket</a>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">Mis Ticket</h4>
+
+    <table class="table">
+      <thead>
+        <tr>
+          
+          <th>Titulo</th>
+          <th>Fecha de creacion</th>
+          <th>Descripcion</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+        <tbody class="table-group-divider">
+          {% if tickets %}
+            {% for ticket in tickets %}
+          {% if ticket.usuario == user.username %}
+            <tr>
+              <td>{{ ticket.title }}</td>
+              <td>{{ ticket.start.year }}/{{ ticket.start.month }}/{{ ticket.start.day }}</td>
+              <td>{{ ticket.description }}</td>
+              <td>{{ ticket.status  }}</td>
+            </tr>
+          {% endif %}
+            {% endfor %}
+            {% else %}
+              <p class='errors'>No tienes tareas pendientes.</p>
+          {% endif %}
+          
+          
+          </tbody>
+      </table>
+  </div>
+</div>
+
+
+{% endblock %}
