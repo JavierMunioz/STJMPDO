@@ -1,14 +1,14 @@
 .contenedor{
-    background-color: white;
+    background-color: transparent;
     width: 100vw;
     height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
-
 }
+
+
 
 nav{
     background-color: #04425C!important;
