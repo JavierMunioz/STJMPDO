@@ -1,0 +1,92 @@
+body {
+    background: linear-gradient(to right, #141e30, #243b55);
+  
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    color: white;
+    width: 350px;
+}
+
+.avatar {
+    
+    margin: 0 auto 20px;
+    
+}
+
+.avatar img {
+    width: 100%;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 10px;
+    background: #1e90ff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-login:hover {
+    background: #00bfff;
+}
+
+.extra-options {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.extra-options a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.extra-options a:hover {
+    text-decoration: underline;
+}
