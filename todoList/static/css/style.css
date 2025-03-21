@@ -8,10 +8,22 @@
     flex-direction: column;
 }
 
-
-
+.blur-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    backdrop-filter: blur(10px); /* Aplicamos el desenfoque */
+    background: #04425c92;
+     /* Oscurece un poco para mejor contraste */
+}
 nav{
     background-color: #04425C!important;
+    z-index: 10;
 }
 *{
     font-family: 'Comfortaa', cursive;
@@ -34,3 +46,9 @@ nav div a{
     color: red!important;
 }
 
+.descripcion-cell {
+    word-wrap: break-word;
+    white-space: normal;
+    max-width: 200px; /* Ajusta el ancho máximo según tu diseño */
+    overflow-wrap: break-word;
+}

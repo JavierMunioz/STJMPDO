@@ -65,6 +65,7 @@ def procesar_ticket(request, id):
 
     ticket = Tickets.objects.get(id=id)
     ticket.status = 'Procesando'  
+    ticket.encargado = str(request.user)
     ticket.save()  
 
     return redirect('dashboard')

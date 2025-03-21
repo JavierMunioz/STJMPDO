@@ -4,41 +4,45 @@
 
 <div class="card">
   <div class="card-header">
-    <a href="{% url 'crearTarea' %}" role="bu
-    " class="btn btn-success">Crear Ticket</a>
+    <a href="{% url 'crearTarea' %}" role="button" class="text-success text-decoration-none fs-5">
+      <i class="fa-solid fa-plus"></i> Crear Ticket
+    </a>
   </div>
   <div class="card-body">
     <h4 class="card-title">Mis Ticket</h4>
 
-    <table class="table">
-      <thead>
-        <tr>
-          
-          <th>Titulo</th>
-          <th>Fecha de creacion</th>
-          <th>Descripcion</th>
-          <th>Status</th>
-        </tr>
-      </thead>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>Título</th>
+            <th>Fecha de creación</th>
+            <th>Descripción</th>
+            <th>Encargado</th>
+            <th>Status</th>
+          </tr>
+        </thead>
         <tbody class="table-group-divider">
           {% if tickets %}
             {% for ticket in tickets %}
-          {% if ticket.usuario == user.username %}
+              {% if ticket.usuario == user.username %}
+                <tr>
+                  <td>{{ ticket.title }}</td>
+                  <td>{{ ticket.start.year }}/{{ ticket.start.month }}/{{ ticket.start.day }}</td>
+                  <td class="descripcion-cell">{{ ticket.description }}</td>
+                  <td>{{ ticket.encargado }}</td>
+                  <td>{{ ticket.status }}</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          {% else %}
             <tr>
-              <td>{{ ticket.title }}</td>
-              <td>{{ ticket.start.year }}/{{ ticket.start.month }}/{{ ticket.start.day }}</td>
-              <td>{{ ticket.description }}</td>
-              <td>{{ ticket.status  }}</td>
+              <td colspan="4" class="text-center text-muted">No tienes tareas pendientes.</td>
             </tr>
           {% endif %}
-            {% endfor %}
-            {% else %}
-              <p class='errors'>No tienes tareas pendientes.</p>
-          {% endif %}
-          
-          
-          </tbody>
+        </tbody>
       </table>
+    </div>
   </div>
 </div>
 

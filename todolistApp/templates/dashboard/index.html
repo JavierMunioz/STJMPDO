@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block titulo %} Dashboard {% endblock %}
 {% block contenido %}
-
 <div class="card">
     <div class="card-header">
         <h1>Dashboard</h1>
@@ -9,46 +8,51 @@
     <div class="card-body">
         <h4 class="card-title">Tickets <i class="fa-solid fa-ticket"></i></h4>
 
-        <table class="table">
-            <thead>
-                <tr>
-
-                    <th>Titulo</th>
-                    <th>Fecha de creacion</th>
-                    <th>Descripcion</th>
-                    <th>Status</th>
-                    <th>Usuario</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                {% if tickets %}
-                {% for ticket in tickets %}
-
-                <tr>
-                    <td><i class="fa-solid fa-ticket-simple"></i> {{ ticket.title }}</td>
-                    <td><i class="fa-solid fa-calendar"></i> {{ ticket.start.year }}/{{ ticket.start.month }}/{{ ticket.start.day }}</td>
-                    <td><i class="fa-solid fa-comment"></i> {{ ticket.description }}</td>
-                    <td><i class="fa-solid fa-question"></i> {{ ticket.status }}</td>
-                    <td><i class="fa-solid fa-user"></i> {{ ticket.usuario }}</td>
-                    {% if ticket.status == "Pendiente" %}
-                    <td><a href="{% url 'procesar_ticket' ticket.id %}" class="btn btn-info" role="button">Procesar</a></td>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Fecha de creación</th>
+                        <th>Descripción</th>
+                        <th>Status</th>
+                        <th>Usuario</th>
+                        <th>Encargado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% if tickets %}
+                    {% for ticket in tickets %}
+                    <tr>
+                        <td class="text-wrap"><i class="fa-solid fa-id-card"></i> {{ ticket.id }}</td>
+                        <td class="text-wrap"><i class="fa-solid fa-ticket-simple"></i> {{ ticket.title }}</td>
+                        <td class="text-wrap"><i class="fa-solid fa-calendar"></i> {{ ticket.start.year }}/{{ ticket.start.month }}/{{ ticket.start.day }}</td>
+                        <td class="text-wrap descripcion-cell"><i class="fa-solid fa-comment"></i> {{ ticket.description }}</td>
+                        <td class="text-wrap"><i class="fa-solid fa-question"></i> {{ ticket.status }}</td>
+                        <td class="text-wrap"><i class="fa-solid fa-user"></i> {{ ticket.usuario }}</td>
+                        <td>{{ ticket.encargado }}</td>
+                        <td class="text-center ">
+                            {% if ticket.status == "Pendiente" %}
+                                <a href="{% url 'procesar_ticket' ticket.id %}" class="btn btn-info btn-sm"><i class="fa-solid fa-receipt fa-xl"></i></a>
+                            {% elif ticket.status == "Procesando" %}
+                                <a href="{% url 'cerrar_ticket' ticket.id %}" class="btn btn-success btn-sm text-white"><i class="fa-solid fa-clipboard-check fa-xl"></i></a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">No tienes tareas pendientes.</td>
+                    </tr>
                     {% endif %}
-                    {% if ticket.status == "Procesando" %}
-                    <td class="text-center"><i class="fa-solid fa-clock"></i></td>
-                    {% endif %}
-                </tr>
-
-                {% endfor %}
-                {% else %}
-                <p class='errors'>No tienes tareas pendientes.</p>
-                {% endif %}
-
-
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
 
 
 {% endblock %}
